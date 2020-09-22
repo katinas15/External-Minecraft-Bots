@@ -11,6 +11,7 @@ function start(){
     while(true){
         sleep(1000)
         for(let i = 0; i<y; i++){
+            if(getRndInteger(1,10) > 8) dropInventory()
             for(let j = 0; j<x; j++){
                 pickAndPlant()
                 move('w')
@@ -38,18 +39,14 @@ function start(){
             move('s')
         }
 
-        sleep(1000)
-        robot.keyTap('t')
-        robot.typeString('/shop')
-        robot.keyTap('enter')
-        sleep(1000)
-        robot.moveMouse(816, 526);
-        robot.mouseClick()
 
         dropInventory()
 
-        robot.keyTap('escape')
     }
+}
+
+function getRndInteger (min, max) {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
 function pickAndPlant(){
@@ -72,12 +69,19 @@ const rows = 4
 const cols = 9
 
 function dropInventory(){
-
+    sleep(1000)
+    robot.keyTap('t')
+    robot.typeString('/shop')
+    robot.keyTap('enter')
+    sleep(1000)
+    robot.moveMouse(816, 526);
+    robot.mouseClick()
 
     let invPos = []
     let loc
     for(let i = 0;i<rows;i++){
         for(let o = 0;o<cols;o++){
+            if(rows == 3 && col == 0) return 
             loc = {y: posy + offset*i, x: posx + offset*o}
             console.log(loc)
             invPos.push(loc)
@@ -93,6 +97,8 @@ function dropInventory(){
         robot.mouseClick()
     }
     robot.keyToggle('shift', 'up')
+
+    robot.keyTap('escape')
 }
 
 
