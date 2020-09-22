@@ -1,10 +1,10 @@
 var robot = require("robotjs");
 
-let x = 50
-let y = 50
+let x = 2
+let y = 2
 
 let sleepClick = 20
-let moveLengthTime = 290
+let moveLengthTime = 287
 
 
 function start(){
@@ -12,7 +12,7 @@ function start(){
         sleep(1000)
         for(let i = 0; i<y; i++){
             for(let j = 0; j<x; j++){
-                if(!(j == 0 && i == 0)) pickAndPlant()
+                pickAndPlant()
                 move('w')
             }
     
@@ -33,17 +33,22 @@ function start(){
         move('d')
 
 
-        for(let i = 0; i<y+10; i++){
+        for(let i = 0; i<y+3; i++){
             move('d')
             move('s')
         }
+
         sleep(1000)
-        robot.mouseClick("right")
+        robot.keyTap('t')
+        robot.typeString('/shop')
+        robot.keyTap('enter')
+        sleep(1000)
+        robot.moveMouse(816, 526);
+        robot.mouseClick()
+
         dropInventory()
 
-        robot.keyToggle('escape', 'down')
-        sleep(10)
-        robot.keyToggle('escape', 'up')
+        robot.keyTap('escape')
     }
 }
 
@@ -60,13 +65,15 @@ function move(letter){
     robot.keyToggle(letter, 'up')
 }
 
-let offset = 40
+let offset = 38
 let posx = 815
 let posy = 600
 const rows = 4
 const cols = 9
 
 function dropInventory(){
+
+
     let invPos = []
     let loc
     for(let i = 0;i<rows;i++){
