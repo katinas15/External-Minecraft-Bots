@@ -1,7 +1,7 @@
 var robot = require("robotjs");
 
-let x = 2
-let y = 2
+let x = 55
+let y = 60
 
 let sleepClick = 20
 let moveLengthTime = 287
