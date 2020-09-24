@@ -1,7 +1,7 @@
 var robot = require("robotjs");
 
 let x = 55
-let y = 60
+let y = 50
 
 let sleepClick = 20
 let moveLengthTime = 287
@@ -10,8 +10,9 @@ let moveLengthTime = 287
 function start(){
     while(true){
         sleep(1000)
+dropInventory()
         for(let i = 0; i<y; i++){
-            if(y%4 == 0) dropInventory()
+            if(i%4 == 0) dropInventory()
             for(let j = 0; j<x; j++){
                 pickAndPlant()
                 pickAndPlant()
@@ -34,10 +35,10 @@ function start(){
             pickAndPlant()
             move('a')
         }
-        move('d')
+        
 
 
-        for(let i = 0; i<y+3; i++){
+        for(let i = 0; i<y*2+3; i++){
             move('d')
             move('s')
         }
@@ -54,21 +55,25 @@ function getRndInteger (min, max) {
 
 function pickAndPlant(){
     robot.mouseClick()
+	robot.mouseClick("right")
     sleep(sleepClick)
     robot.mouseClick("right")
     sleep(sleepClick)
     robot.mouseClick("right")
+robot.mouseClick("right")
 }
 
 function move(letter){
+	sleep(sleepClick)
+    robot.mouseClick("right")
     robot.keyToggle(letter, 'down')
     sleep(moveLengthTime)
     robot.keyToggle(letter, 'up')
 }
 
-let offset = 38
-let posx = 815
-let posy = 600
+let offset = 58
+let posx = 345
+let posy = 513
 const rows = 4
 const cols = 9
 
@@ -78,17 +83,19 @@ function dropInventory(){
     robot.typeString('/shop')
     robot.keyTap('enter')
     sleep(1000)
-    robot.moveMouse(816, 526);
+    robot.moveMouse(359, 418);
     robot.mouseClick()
 
     let invPos = []
     let loc
     for(let i = 0;i<rows;i++){
         for(let o = 0;o<cols;o++){
-            if(i == 3 && o == 0) return 
-            loc = {y: posy + offset*i, x: posx + offset*o}
-            console.log(loc)
-            invPos.push(loc)
+            if(i == 3 && o == 0) continue
+
+			    loc = {y: posy + offset*i, x: posx + offset*o}
+			    console.log(loc)
+			    invPos.push(loc)
+		
         }
     }
 
