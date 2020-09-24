@@ -11,8 +11,9 @@ function start(){
     while(true){
         sleep(1000)
         for(let i = 0; i<y; i++){
-            if(getRndInteger(1,10) > 8) dropInventory()
+            if(y%4 == 0) dropInventory()
             for(let j = 0; j<x; j++){
+                pickAndPlant()
                 pickAndPlant()
                 move('w')
             }
@@ -23,11 +24,13 @@ function start(){
     
             for(let j = 0; j<x; j++){
                 pickAndPlant()
+                pickAndPlant()
                 move('s')
             }
             move('s')
             move('s')
     
+            pickAndPlant()
             pickAndPlant()
             move('a')
         }
@@ -54,6 +57,7 @@ function pickAndPlant(){
     sleep(sleepClick)
     robot.mouseClick("right")
     sleep(sleepClick)
+    robot.mouseClick("right")
 }
 
 function move(letter){
@@ -81,7 +85,7 @@ function dropInventory(){
     let loc
     for(let i = 0;i<rows;i++){
         for(let o = 0;o<cols;o++){
-            if(rows == 3 && col == 0) return 
+            if(i == 3 && o == 0) return 
             loc = {y: posy + offset*i, x: posx + offset*o}
             console.log(loc)
             invPos.push(loc)
