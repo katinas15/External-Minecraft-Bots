@@ -1,4 +1,4 @@
-var robot = require("robotjs");
+var rbot = require("robotjs");
 
 let x = 55
 let y = 50
@@ -71,9 +71,9 @@ function move(letter){
     robot.keyToggle(letter, 'up')
 }
 
-let offset = 58
-let posx = 345
-let posy = 513
+let offset = 38
+let posx = 815
+let posy = 600
 const rows = 4
 const cols = 9
 
@@ -83,7 +83,7 @@ function dropInventory(){
     robot.typeString('/shop')
     robot.keyTap('enter')
     sleep(1000)
-    robot.moveMouse(359, 418);
+    robot.moveMouse(816, 526);
     robot.mouseClick()
 
     let invPos = []
