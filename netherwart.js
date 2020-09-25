@@ -1,7 +1,7 @@
 var robot = require("robotjs");
 
 let x = 55
-let y = 50
+let y = 28
 
 let sleepClick = 20
 let moveLengthTime = 287
@@ -10,9 +10,9 @@ let moveLengthTime = 287
 function start(){
     while(true){
         sleep(1000)
-dropInventory()
+
         for(let i = 0; i<y; i++){
-            if(i%4 == 0) dropInventory()
+            if(i%2 == 0) dropInventory()
             for(let j = 0; j<x; j++){
                 pickAndPlant()
                 pickAndPlant()
