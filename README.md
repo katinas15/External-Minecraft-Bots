@@ -1,2 +1,2 @@
-# Game-Bots
+# External-Minecraft-Bots
  
