@@ -6,12 +6,15 @@ let pixelMargin = 50
 let r = 200
 let g = 190
 let b = 170
-
+let sleepClick = 20
+let moveLengthTime = 287
+let walkDirection = false
 
 function start(){
     let start
     let current
     let check = false
+    
     while(true){
         sleep(100)
    
@@ -50,6 +53,16 @@ function start(){
             if(start + interval < current){
                 robot.mouseClick("right")
                 sleep(1000)
+                if (walkDirection) {
+                    move('d')
+                    move('d')
+                    walkDirection =false
+                } else {
+                    move('a')
+                    move('a')
+                    walkDirection = true
+                }
+                
                 robot.mouseClick("right")
                 sleep(3000)
                 start = new Date().getTime()
@@ -71,16 +84,6 @@ function hexToRgb(hex) {
         g: parseInt(result[2], 16),
         b: parseInt(result[3], 16)
     } : null;
-}
-
-function pickAndPlant(){
-    robot.mouseClick()
-	robot.mouseClick("right")
-    sleep(sleepClick)
-    robot.mouseClick("right")
-    sleep(sleepClick)
-    robot.mouseClick("right")
-robot.mouseClick("right")
 }
 
 function move(letter){
